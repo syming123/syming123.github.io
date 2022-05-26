@@ -34,6 +34,10 @@ window.onload = function(){
     canvas.addEventListener("mouseup",doMouseUp,false);
     canvas.addEventListener("mousemove",doMouseMove,false);
     canvas.addEventListener("mouseout",doMouseOut,false);
+    canvas.addEventListener("touchstart",doTouchDown,false)
+    canvas.addEventListener("touchmove",doTouchMove,false)
+    canvas.addEventListener("touchend",doTouchUp,false)
+
 
     storeCanvas = document.createElement("canvas")
     storeCanvas.setAttribute("width",""+v_width)
@@ -123,6 +127,38 @@ function doMouseMove(event) {
 function doMouseOut(event) {
     var x = event.pageX;
     var y = event.pageY;
+}
+function doTouchDown(event) {
+    var x = event.targetTouches[0].pageX;
+    var y = event.targetTouches[0].pageY;
+    var loc = getLocation(x,y)
+    
+    point_idx = -1
+    for(var i = 0; i < 4; i++)
+    {
+        if(Math.pow(points[i].x-loc.x,2)+Math.pow(points[i].y-loc.y,2) < Math.pow(touch_area,2))
+        {
+            point_idx = i;
+            break;
+        }
+    }
+}
+function doTouchMove(event) {
+    var x = event.targetTouches[0].pageX;
+    var y = event.targetTouches[0].pageY;
+    var loc = getLocation(x,y)
+
+    if(point_idx != -1)
+    {
+        points[point_idx].x = loc.x
+        points[point_idx].y = loc.y
+        var ctx = document.getElementById("canvas1").getContext('2d')
+        ctx.drawImage(storeCanvas, 0, 0, v_width, v_height)
+        quadrangle()
+    }
+}
+function doTouchUp(event) {
+    point_idx = -1
 }
  
 //获取当前鼠标点击的相对坐标
