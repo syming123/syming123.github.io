@@ -129,14 +129,15 @@ function doMouseOut(event) {
     var y = event.pageY;
 }
 function doTouchDown(event) {
-    var x = event.targetTouches[0].pageX;
-    var y = event.targetTouches[0].pageY;
+    var x = event.touches[0].pageX;
+    var y = event.touches[0].pageY;
     var loc = getLocation(x,y)
+    alert(x+":"+y)
     
     point_idx = -1
     for(var i = 0; i < 4; i++)
     {
-        if(Math.pow(points[i].x-loc.x,2)+Math.pow(points[i].y-loc.y,2) < Math.pow(touch_area,2))
+        if(Math.pow(points[i].x-loc.x,2)+Math.pow(points[i].y-loc.y,2) < Math.pow(touch_area+3,2))
         {
             point_idx = i;
             break;
@@ -144,8 +145,8 @@ function doTouchDown(event) {
     }
 }
 function doTouchMove(event) {
-    var x = event.targetTouches[0].pageX;
-    var y = event.targetTouches[0].pageY;
+    var x = event.touches[0].pageX;
+    var y = event.touches[0].pageY;
     var loc = getLocation(x,y)
 
     if(point_idx != -1)
