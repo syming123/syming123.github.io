@@ -16,6 +16,7 @@ var touch_area = 10
 var point_idx = -1
 
 var storeCanvas
+var debugText
 
 //从左上开始顺时针旋转
 var points = [
@@ -28,6 +29,9 @@ var points = [
 window.onload = function(){
     var canvas = document.getElementById('canvas1')
     var g = canvas.getContext('2d')
+
+    debugText = document.getElementById("debug")
+    debugText.innerText = "ddb"
 
     //注册事件
     canvas.addEventListener("mousedown",doMouseDown,false);
@@ -58,7 +62,6 @@ live = function() {
         }
  
 takePhoto = function() {
-    alert("aaa")
       let vid1 = document.getElementById("video1");
       let can1 = document.getElementById("canvas1");
       let ctx = can1.getContext('2d');
