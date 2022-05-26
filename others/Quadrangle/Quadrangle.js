@@ -38,7 +38,6 @@ window.onload = function(){
     canvas.addEventListener("touchmove",doTouchMove,false)
     canvas.addEventListener("touchend",doTouchUp,false)
 
-
     storeCanvas = document.createElement("canvas")
     storeCanvas.setAttribute("width",""+v_width)
     storeCanvas.setAttribute("height",""+v_height)
@@ -59,6 +58,7 @@ live = function() {
         }
  
 takePhoto = function() {
+    alert("aaa")
       let vid1 = document.getElementById("video1");
       let can1 = document.getElementById("canvas1");
       let ctx = can1.getContext('2d');
