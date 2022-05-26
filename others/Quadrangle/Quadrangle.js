@@ -3,7 +3,7 @@
  * 简介：任意四边形图像变为矩形
  */
 
-/*import {
+/*import {0
     getMatrix, perspectiveTransform
 } from "./PerspectiveTransform.js"*/
 
@@ -18,6 +18,7 @@ var point_idx = -1
 var storeCanvas
 var debugText
 
+
 //从左上开始顺时针旋转
 var points = [
     {x: 90,y: 120},
@@ -26,7 +27,34 @@ var points = [
     {x: 30,y: 450}
 ]
 
+function dpy(i)
+{
+    var vid = document.getElementById("video1")
+    var can1 = document.getElementById("canvas1")
+    var can2 = document.getElementById("canvas2")
+    if(i == 0)
+    {
+        vid.style.display = "block"
+        can1.style.display = "none"
+        can2.style.display = "none"
+    }
+    else if(i == 1)
+    {
+        vid.style.display = "none"
+        can1.style.display = "block"
+        can2.style.display = "none"
+    }
+    else if(i == 2)
+    {
+        vid.style.display = "none"
+        can1.style.display = "none"
+        can2.style.display = "block"
+    }
+}
+
 window.onload = function(){
+    dpy(0)
+
     var canvas = document.getElementById('canvas1')
     var g = canvas.getContext('2d')
 
@@ -48,6 +76,7 @@ window.onload = function(){
 }
 
 live = function() {
+    dpy(0)
             let constraints = {
                 video: {width: v_width, height: v_height},
                 audio: true
@@ -62,6 +91,7 @@ live = function() {
         }
  
 takePhoto = function() {
+      dpy(1)
       let vid1 = document.getElementById("video1");
       let can1 = document.getElementById("canvas1");
       let ctx = can1.getContext('2d');
@@ -71,6 +101,7 @@ takePhoto = function() {
       ctStore.drawImage(vid1, 0, 0, v_width, v_height)
       }
 quadrangle = function() {
+    dpy(1)
     let can1 = document.getElementById("canvas1");
     var ct=can1.getContext("2d");
     //画四边形
@@ -178,6 +209,7 @@ function getLocation(x, y) {
 
 
 test1rev = function() {  // 类似负片效果
+    dpy(2)
     let can1 = document.getElementById("canvas1");
     var ct=can1.getContext("2d");
     var im=ct.getImageData(0,0, can1.width,can1.height);
@@ -194,6 +226,7 @@ test1rev = function() {  // 类似负片效果
     ct2.putImageData(im,0,0)
 }
 test2grey = function() {
+    dpy(2)
     var can1 = document.getElementById("canvas1");
     var ct=can1.getContext("2d");
     var wid=can1.width;
@@ -217,6 +250,7 @@ test2grey = function() {
 }
 
 affine = function() {
+    dpy(2)
     var points2 = [
         {x: 0,y: 0},
         {x: 0,y: 0},
