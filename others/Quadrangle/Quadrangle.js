@@ -31,7 +31,7 @@ window.onload = function(){
     var g = canvas.getContext('2d')
 
     debugText = document.getElementById("debug")
-    debugText.innerText = "ddb"
+    debugText.innerText = "dbg"
 
     //注册事件
     canvas.addEventListener("mousedown",doMouseDown,false);
@@ -135,7 +135,7 @@ function doTouchDown(event) {
     var x = event.touches[0].pageX;
     var y = event.touches[0].pageY;
     var loc = getLocation(x,y)
-    alert(x+":"+y)
+    debugText.innerText = x+":"+y
     
     point_idx = -1
     for(var i = 0; i < 4; i++)
